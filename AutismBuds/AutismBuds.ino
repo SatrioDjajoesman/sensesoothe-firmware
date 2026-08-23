@@ -20,8 +20,7 @@
     - ESP32-A2DP (pschatzmann)
     - ESP32 board package (espressif/arduino-esp32) via Boards Manager
 
-  Before uploading: copy secrets.h.example -> secrets.h and fill in your WiFi +
-  backend + earbud details.
+  Before uploading: fill in the WiFi / backend / earbud values just below.
 */
 
 #include <WiFi.h>
@@ -31,7 +30,22 @@
 #include "MAX30105.h"
 #include "heartRate.h"
 #include "BluetoothA2DPSource.h"
-#include "secrets.h"
+
+// ---------------------------------------------------------------------------
+// Config — fill these in for your setup before uploading.
+// ---------------------------------------------------------------------------
+
+#define WIFI_SSID     "YourWiFiName"
+#define WIFI_PASSWORD "YourWiFiPassword"
+
+// The laptop running the FastAPI backend, on the same WiFi network.
+// Find it with `ipconfig` (Windows) / `ifconfig` or `ipconfig getifaddr en0` (Mac).
+#define BACKEND_HOST  "192.168.1.100"
+#define BACKEND_PORT  8000
+#define BACKEND_PATH  "/ws/device"
+
+// Exact name of the earbuds as they appear when scanning for Bluetooth devices.
+#define EARBUDS_NAME  "KiiP DTH3x"
 
 // ---------------------------------------------------------------------------
 // Globals
